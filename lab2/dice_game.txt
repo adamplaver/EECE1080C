@@ -1,0 +1,3 @@
+Roll some dice
+Then check if it meets the winning or losing conditions
+Either roll again or print winner or not a winner
