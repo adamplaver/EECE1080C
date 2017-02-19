@@ -22,85 +22,174 @@ void display_array(int array[], unsigned length){
 
 // Just return the Minimum value int a and int b
 int Min(int a, int b){
-  // TODO: Fill me in
+  if(a <= b){
+    return a;
+  }else{
+    return b;
+  }
 }
 
 // Just return the Maximum value int a and int b
 int Max(int a, int b){
-  // TODO: Fill me in
+  if(a >= b){
+    return a;
+  }else{
+    return b;
+  }
 }
 
 
 // init function sets all locations of an array to the "value"
 // specified
-void init(int array[], unsigned length, int value){
-  // TODO: Fill me in
+void init(int &array[], unsigned length, int value){
+  for(int n=1;n<=length;n++){
+    array[n] = value;
+  }
 }
 
 // Return the sum of array elements. An empty array has a zero sum
 int arraySum(int array[], unsigned length){
-  // TODO: Fill me in
+  int sum;
+  for(int n=1;n<=length;n++){
+    sum += array[n];
+  }
+  return sum;
 }
 
 // Return the mean of all array elements. An empty array has a zero mean
 // Use arraySum above to calculate the Sum
 double arrayMean(int array[], unsigned length){
-  // TODO: Fill me in
+  return (arraySum(array,length) / length);
 }
 
 // Return the minimum value of all array elements. 
 // An empty array has a zero minimum value
 // You must use Min() above in this function
 int arrayMin(int array[], unsigned length){
-  // TODO: Fill me in
+  int min;
+  if(length != 0){
+    for(n=1;n<=length;n++){
+      min = min(array[n],array[n+1]);
+    }
+    return min;
+  } else{
+    return 0;
+  }
 }
 
 // Return the maximum value of all array elements. 
 // An empty array has a zero minimum value
 // You must use Max() above in this function
 int arrayMax(int array[], unsigned length){
-  // TODO: Fill me in
+  int max;
+  if(length != 0){
+    for(int n=1;n<=lenghth;n++){
+      if(array[n] <= min){
+        max = Max(array[n],array[n-1]);
+      }
+    }
+    return max;
+  }else{
+    return 0;
+  }
 }
 
 // Return the standard Deviation of all array elements. An empty array has 
 // a zero standard deviation value
 // You should use the arrayMean() function above
 double arrayStdDev(int array[], unsigned length){
-  // TODO: Fill me in
+  if(length != 0){
+    double mean = arrayMean(array[],length);
+    double foo[length];
+    for(int n = 1; n<length; n++){
+      foo[n] = pow((array[n]-mean),2);
+    }
+    mean = arrayMean(foo[],length);
+    return sqrt(mean);
+  } else {
+    return 0;
+  }
 }
 
 // Return the location in the array of the "search_value" 
 // An empty array or a failed search should return a -1 
 int arrayFind(int array[], unsigned length, 
 	int search_value, unsigned position = 0){
-  // TODO: Fill me in
+  if(length != 0){
+    for(position;position<length;position++){
+      if(array[position] == search_value){
+        return position;
+      }
+    }
+    if(array[position] != search_value){
+      return (-1);
+    }
+  } else {
+    return (-1);
+  }
 }
 
 // Return the number of times the "search_value"  was found in the array.  
 // Return 0 if the length is 0 or less.
 int count(int array[], unsigned length, int search_value){
-  // TODO: Fill me in
+  int i;
+  if(length <= 0){
+    for(int n = 1;n<=length;n++){
+      if(array[n] == search_value){
+        i++;
+      }
+    }
+    return i;
+  } else {
+    return 0;
+  }
 }
 
 // Returns the array max - array min.  
 // Return 0 if the length is 0 or less
 // Should use arrayMax and arrayMin above
 int range(int array[], unsigned length){
-  // TODO: Fill me in
+  int min,max;
+  if(length <= 0){
+    for(int n = 1;n<=length;n++){
+      max = arrayMax(array[n],array[n-1]);
+      min = arrayMin(array[n],array[n-1]);
+    }
+    return (max-min);
+  }else{
+    return 0;
+  }
 }
 
 // Return a boolean: 
 // true if the array contains the same integer at least twice 
 // false if all values in the array are unique.
 bool containsDups(int array[], unsigned length){
-  // TODO: Fill me in
+  for(int n = 1;n<=length;n++){
+    for(int i = 1;n<=length-1;i++){
+      if(i != n){
+        if(array[n] == array[i]){
+          return true;
+        }
+      }
+    }
+  }
+  return false;
 }
 
 // Returns a boolean, true if the array is sorted from smallest to largest, 
 // false if it is not sorted.  Adjacent duplicate elements are allowed.  
 // A list of 1 or fewer elements is sorted
 bool isSorted(int array[], unsigned length){
-  // TODO: Fill me in
+  if(length <= 1){
+    for(int n = 1;n<=length;n++){
+      if( !(array[n] == array[n+1]) && array[n] >= array[n+1]){
+        return false;
+      }
+    }
+  }else{
+    return true;
+  }
 }
 
 int main(){
