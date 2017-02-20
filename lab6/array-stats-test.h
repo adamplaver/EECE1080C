@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cxxtest/TestSuite.h>
 
-#include "stats.cpp"
+#include "array-stats.cpp"
 
 using namespace std;
 
@@ -46,18 +46,54 @@ public:
 
 class MyArrayMin : public CxxTest::TestSuite {
 public:
+  void testMean1() {
+    int a[] = {1};
+    TS_ASSERT_DELTA(arrayMean(a, 1), 1, 0.0001);
+  }
+  
+  void testMean2() {
+    int a[] = {5,5};
+    TS_ASSERT_DELTA(arrayMean(a, 2), 5, 0.0001);
+  }
 };
 
 class MyArrayMax : public CxxTest::TestSuite {
 public:
+  void testMean1() {
+    int a[] = {3};
+    TS_ASSERT_DELTA(arrayMean(a, 1), 3, 0.0001);
+  }
+  
+  void testMean2() {
+    int a[] = {10,10};
+    TS_ASSERT_DELTA(arrayMean(a, 2), 10, 0.0001);
+  }
 };
 
 class MyArrayStDev : public CxxTest::TestSuite {
 public:
+  void testMean1() {
+    int a[] = {1,2};
+    TS_ASSERT_DELTA(arrayMean(a, 2), 2.5, 0.0001);
+  }
+  
+  void testMean2() {
+    int a[] = {2,2};
+    TS_ASSERT_DELTA(arrayMean(a, 2), 2, 0.0001);
+  }
 };
 
 class MyArrayCount : public CxxTest::TestSuite {
 public:
+  void testMean1() {
+    int a[] = {5,5,5};
+    TS_ASSERT_DELTA(arrayMean(a, 3), 5, 0.0001);
+  }
+  
+  void testMean2() {
+    int a[] = {2,2,2,2};
+    TS_ASSERT_DELTA(arrayMean(a, 4), 2, 0.0001);
+  }
 };
 
 
