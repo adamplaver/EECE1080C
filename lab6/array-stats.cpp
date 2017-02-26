@@ -42,17 +42,16 @@ int Max(int a, int b){
 // init function sets all locations of an array to the "value"
 // specified
 void init(int array[], unsigned length, int value){
-  for(int n=1;n<=length;n++){
+  for(unsigned n=0;n<length;n++){
     array[n] = value;
   }
 }
 
 // Return the sum of array elements. An empty array has a zero sum
 int arraySum(int array[], unsigned length){
-  int l = length-1;
-  if(l >= 0){
+  if(length >= 0){
     int sum;
-    for(int n = 0;n<=l;n++){
+    for(unsigned n = 0;n<length;n++){
       sum += array[n];
     }
     return sum;
@@ -80,9 +79,9 @@ double arrayMean(int array[], unsigned length){
 // You must use Min() above in this function
 int arrayMin(int array[], unsigned length){
   int m;
-  if(length != 0){
+  if(length > 0){
     m = array[0];
-    for(int n=1;n<length;n++){
+    for(unsigned n=1;n<length;n++){
       m = Min(array[n],m);
     }
     return m;
@@ -98,7 +97,7 @@ int arrayMax(int array[], unsigned length){
   int m;
   if(length != 0){
     m = array[0];
-    for(int n=1;n<=length-1;n++){
+    for(unsigned n=0;n<length;n++){
       m = Max(array[n],m);
     }
     return m;
@@ -114,7 +113,7 @@ double arrayStdDev(int array[], unsigned length){
   if(length != 0){
     double mean = arrayMean(array,length);
     int foo[length];
-    for(int n = 0; n<length; n++){
+    for(unsigned n = 0; n<length; n++){
       foo[n] = pow((array[n]-mean),2);
     }
     mean = sqrt(arrayMean(foo,length));
@@ -128,17 +127,17 @@ double arrayStdDev(int array[], unsigned length){
 // An empty array or a failed search should return a -1 
 int arrayFind(int array[], unsigned length, 
 	int search_value, unsigned position = 0){
-  if(length != 0){
-    for(position;position<length;position++){
+  if(length > 0){
+    for(;position<length;position++){
       if(array[position] == search_value){
         return position;
       }
     }
     if(array[position] != search_value){
-      return (-1);
+      return (1);
     }
   } else {
-    return (-1);
+    return (1);
   }
 }
 
@@ -146,9 +145,8 @@ int arrayFind(int array[], unsigned length,
 // Return 0 if the length is 0 or less.
 int count(int array[], unsigned length, int search_value){
   int x;
-  int a = length;
   if(length > 0){
-    for(int n = 0;n<a;n++){
+    for(unsigned n = 0;n<length;n++){
       if(array[n] == search_value){
         x++;
       }
@@ -177,8 +175,8 @@ int range(int array[], unsigned length){
 // true if the array contains the same integer at least twice 
 // false if all values in the array are unique.
 bool containsDups(int array[], unsigned length){
-  for(int n = 0;n<length-1;n++){
-    for(int i = 0;n<length-2;i++){
+  for(unsigned n = 0;n<length-1;n++){
+    for(unsigned i = 0;n<length-2;i++){
       if((array[n] == array[i]) && (i != n)){
           return true;
       }
@@ -192,7 +190,7 @@ bool containsDups(int array[], unsigned length){
 // A list of 1 or fewer elements is sorted
 bool isSorted(int array[], unsigned length){
   if(length >= 1){
-    for(int n = 0;n<length;n++){
+    for(unsigned n = 0;n<length;n++){
       if( !(array[n] == array[n+1]) && (array[n] >= array[n+1])){
         return false;
       }
@@ -257,5 +255,8 @@ int main(){
   cout << "StdDev value = 21.2363" << " = " << arrayStdDev(a9, 7) << endl;
   cout << "End of a9 stats" << endl;
   
+  cout << "ArrayMean1 " << arrayMean(int array[] = {1,2,3},3) << endl;
+  cout << "ArrayMean2 " << arrayMean(array[] = {2,2}, 2) << endl;
+
   return 0;
 }
