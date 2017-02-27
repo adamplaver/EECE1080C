@@ -50,7 +50,7 @@ void init(int array[], unsigned length, int value){
 // Return the sum of array elements. An empty array has a zero sum
 int arraySum(int array[], unsigned length){
   if(length >= 0){
-    int sum;
+    int sum = 0;
     for(unsigned n = 0;n<length;n++){
       sum += array[n];
     }
@@ -125,26 +125,25 @@ double arrayStdDev(int array[], unsigned length){
 
 // Return the location in the array of the "search_value" 
 // An empty array or a failed search should return a -1 
-int arrayFind(int array[], unsigned length, 
-	int search_value, unsigned position = 0){
-  if(length > 0){
-    for(;position<length;position++){
-      if(array[position] == search_value){
+int arrayFind(int array[],unsigned length, int search_value, unsigned position = 0){
+  if(length >= 0){
+    int num = 0;
+    for(position = position;position<length;position++){
+      num = array[position];
+      if(num == search_value){
         return position;
       }
     }
-    if(array[position] != search_value){
-      return (1);
-    }
+    return (-1);
   } else {
-    return (1);
+    return (-1);
   }
 }
 
 // Return the number of times the "search_value"  was found in the array.  
 // Return 0 if the length is 0 or less.
 int count(int array[], unsigned length, int search_value){
-  int x;
+  int x = 0;
   if(length > 0){
     for(unsigned n = 0;n<length;n++){
       if(array[n] == search_value){
@@ -175,14 +174,18 @@ int range(int array[], unsigned length){
 // true if the array contains the same integer at least twice 
 // false if all values in the array are unique.
 bool containsDups(int array[], unsigned length){
-  for(unsigned n = 0;n<length-1;n++){
-    for(unsigned i = 0;n<length-2;i++){
-      if((array[n] == array[i]) && (i != n)){
-          return true;
+  int c = 0;
+  for(unsigned n = 0;n<length;n++){
+    for(unsigned i = 0;i<length;i++){
+      if((array[n] == array[i]) && (n != i)){
+          c++;
       }
     }
   }
-  return false;
+  if(c >= 2)
+    return true;
+  else
+    return false;
 }
 
 // Returns a boolean, true if the array is sorted from smallest to largest, 
@@ -191,7 +194,7 @@ bool containsDups(int array[], unsigned length){
 bool isSorted(int array[], unsigned length){
   if(length >= 1){
     for(unsigned n = 0;n<length;n++){
-      if( !(array[n] == array[n+1]) && (array[n] >= array[n+1])){
+      if(array[n] >= array[n+1] && array[n] != array[n+1]){
         return false;
       }
     }
@@ -255,8 +258,5 @@ int main(){
   cout << "StdDev value = 21.2363" << " = " << arrayStdDev(a9, 7) << endl;
   cout << "End of a9 stats" << endl;
   
-  cout << "ArrayMean1 " << arrayMean(int array[] = {1,2,3},3) << endl;
-  cout << "ArrayMean2 " << arrayMean(array[] = {2,2}, 2) << endl;
-
   return 0;
 }

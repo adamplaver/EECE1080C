@@ -1,6 +1,7 @@
 #include <cmath>
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -69,26 +70,10 @@ bool containsDups(string sarray[], int length){
 
 
 string rotateString(string to_rotate, int direction, int offset){
-	string output;
-	for(int a = 0; a < to_rotate.size(); a++){
-		output[a] = to_rotate[a];
-	}
-	if (direction == RIGHT_DIR){
-		for(int n = 0;n<to_rotate.size();n++){
-			if((n + offset) > to_rotate.size()){
-				output[(n+offset) - to_rotate.size()] = to_rotate[n];
-			}else{
-				output[n+offset] = to_rotate[n];
-			}
-		}
-	} else{
-		for(int n = 0;n<to_rotate.size();n++){
-			if((n - offset) < to_rotate.size()){
-				output[(n-offset)+to_rotate.size()] = to_rotate[n];
-			}else{
-				output[n-offset] = to_rotate[n];
-			}
-		}
+	if(direction == RIGHT_DIR){
+		for(int n = )
+	}else{
+
 	}
 }
 
